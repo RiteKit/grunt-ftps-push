@@ -85,7 +85,7 @@ module.exports = function(grunt) {
                 if(err){
                     grunt.log.error('ftp list error!', err);
                 }
-                if (typeof list === 'undefined'){
+                if (typeof list === 'undefined' || list.length == 0){
                     ftp.mkdir(options.dest + '/' + dir, true, function(err){
                         grunt.log.ok('dir created: '+dir);
                         if(err) {
