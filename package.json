@@ -6,6 +6,7 @@
     "test": "mocha tests/spec.js"
   },
   "author": "RiteKit",
+  "repository": "RiteKit/grunt-ftps-push",
   "license": "MIT",
   "dependencies": {
     "ftp": "^0.3.10"
