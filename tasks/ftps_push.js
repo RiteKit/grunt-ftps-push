@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         authFile: '.ftppass'
     };
 
-    grunt.registerMultiTask('ftps_deploy', 'Deploy files', function() {
+    grunt.registerMultiTask('ftps_push', 'Deploy files', function() {
         /* default config */
         var options = this.options(opts);
 
