@@ -1,6 +1,6 @@
 {
   "name": "grunt-ftps-push",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "FTPS deploy",
   "scripts": {
     "test": "mocha tests/spec.js"
@@ -9,7 +9,7 @@
   "repository": "RiteKit/grunt-ftps-push",
   "license": "MIT",
   "dependencies": {
-    "ftp": "^0.3.10"
+    "ftp": "git+https://github.com/RiteKit/node-ftp.git"
   },
   "devDependencies": {
     "mocha": "~2.5.2",
