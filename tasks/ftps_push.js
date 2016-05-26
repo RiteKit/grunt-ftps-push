@@ -76,8 +76,8 @@ module.exports = function(grunt) {
             secureOptions: {
                 requestCert: true,
                 rejectUnauthorized: false
-            }
-
+            },
+            keepalive:0
         });
         
         function createRemoteDir(dir, callback){

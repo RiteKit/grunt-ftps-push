@@ -1,6 +1,6 @@
 {
   "name": "grunt-ftps-push",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "FTPS deploy",
   "scripts": {
     "test": "mocha tests/spec.js"
