@@ -126,14 +126,23 @@ module.exports = function(grunt) {
 
         }
 
-        function uploadFile(origin, remote,callback){
+        function uploadFile(origin, remote,callback,fail){
             ftp.put(origin, remote, function(err){
                 if(err) {
-                    grunt.log.error('upload failed: ' + origin + '', err)
-                }else if(!options.quiet){
-                    grunt.log.ok('uploaded: '+origin);
+                    grunt.log.error('upload failed: ' + origin + '', err);
+                    var fl = (fail || 0) + 1;
+                    if(fl<=3){
+                        grunt.log.error('Trying again ('+fl+'/3)');
+                        uploadFile(origin, remote,callback,fl);
+                    }else{
+                        grunt.log.error('Skipped');
+                        callback();
+                    }
+
+                }else{
+                    !options.quiet || grunt.log.ok('uploaded: '+origin);
+                    callback();
                 }
-                callback();
             });
         }
 
