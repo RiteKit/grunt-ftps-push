@@ -140,7 +140,7 @@ module.exports = function(grunt) {
                     }
 
                 }else{
-                    !options.quiet || grunt.log.ok('uploaded: '+origin);
+                    !options.quiet && grunt.log.ok('uploaded: '+origin);
                     callback();
                 }
             });
