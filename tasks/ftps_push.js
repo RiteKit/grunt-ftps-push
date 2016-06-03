@@ -52,13 +52,14 @@ module.exports = function(grunt) {
                 dirs.push(file);
             }
         });
-        if(files.length == 0){
+        if(files.size() == 0 && dirs.size() == 0){
             grunt.log.ok('No file uploaded!');
             done();
+            return;
         }
         var ftp = new FtpClient();
         ftp.on('ready',function(){
-            if(dirs.length == 0){
+            if(dirs.size() == 0){
                 processFiles();
             }else{
                 processDirs();
@@ -112,16 +113,18 @@ module.exports = function(grunt) {
         }
 
         function processFiles(){
-            var file = files.pop();
-            uploadFile(options.cwd + '/' + file, options.dest + '/' + file,function(){
-                if(files.hasNext()){
-                    processFiles();
-                }else{
-                    ftp.end();
-                    grunt.log.ok("upload Done!");
-                    done();
-                }
-            });
+            if(files.hasNext()){
+                var file = files.pop();
+                uploadFile(options.cwd + '/' + file, options.dest + '/' + file,function(){
+                    if(files.hasNext()){
+                        processFiles();
+                    }else{
+                        end();
+                    }
+                });
+            }else{
+                end();
+            }
 
 
         }
@@ -144,6 +147,12 @@ module.exports = function(grunt) {
                     callback();
                 }
             });
+        }
+
+        function end(){
+            ftp.end();
+            grunt.log.ok("upload Done!");
+            done();
         }
 
     });
